@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>探花TV用户注册</title>
+  <style>
+    body {
+      background-image: url('https://pic.netbian.com/uploads/allimg/240624/231525-17192421251836.jpg'); /* 替换为你的图片路径 */
+      /*ackground-image: url('../front/image/AV.png');*/
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    input[type="text"], input[type="password"], input[type="submit"] {
+      margin: 10px 0;
+      padding: 10px;
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .form-container {
+      margin-bottom: 10px;
+    }
+  </style>
+  <script>
+    function validateForm() {
+      var username = document.forms["registerForm"]["username"].value;
+      var password = document.forms["registerForm"]["password"].value;
+
+      var usernameRegex = /^[a-zA-Z0-9]{1,12}$/;
+      var passwordRegex = /^[a-zA-Z0-9]{1,12}$/;
+
+      if (!usernameRegex.test(username)) {
+        alert("用户名只能包含字母和数字，长度为1到12位");
+        return false;
+      }
+      if (!passwordRegex.test(password)) {
+        alert("密码只能包含字母和数字，长度为1到12位");
+        return false;
+      }
+      if (username === "admin") {
+        alert("用户名不能为admin");
+        return false;
+      }
+      return true;
+    }
+  </script>
+</head>
+<body>
+<div class="container">
+  <h2>注册</h2>
+  <form name="registerForm" onsubmit="return validateForm()" method="post" action="/user/register" class="form-container">
+    用户名: <input type="text" name="username"><br>
+    密码: <input type="password" name="password"><br>
+    邮箱: <input type="text" name="email"><br>
+    <input type="submit" value="注册">
+  </form>
+
+  <!-- 添加跳转到修改密码页面的按钮 -->
+  <form action="/update-password.html" method="post">
+    <input type="submit" value="跳转至修改密码">
+  </form>
+</div>
+</body>
+</html>
